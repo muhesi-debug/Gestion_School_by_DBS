@@ -1,0 +1,117 @@
+Fiche de paie des agents par mois et par annee scolaire
+
+FICHE DE PAIE COLLECTIVE
+
+SELECT school.num_secope,school.nom_ecole,school.reseau,school.pays,school.province,school.ville_territoire,school.commune_chefferi ,agent.id_agent, noms_agent, genre, grade, fonction,datePaiment,libelle, 
+montant_prime,mois.id_mois, mois.description_mois, school_year.description_annee 
+FROM agent,payement_prime_agent,  school_year, mois,school 
+WHERE (payement_prime_agent.id_mois=mois.id_mois) 
+AND (payement_prime_agent.id_annee_scol=school_year.id_annee_scol) 
+AND (payement_prime_agent.id_agent=agent.id_agent)
+
+OK OK
+----------------------------------------------------------------------------------------
+SELECT payement_prime_agent.id_mois, noms_agent, genre, grade, fonction, id_prime, montant_prime, 
+libelle,  mois.description_mois, school_year.description_annee 
+FROM agent, payement_prime_agent,  school_year, mois 
+WHERE mois.description_mois='Janvier' AND 
+(payement_prime_agent.id_annee_scol=school_year.id_annee_scol) GROUP BY payement_prime_agent.id_mois;
+----------------------------------------------------------------------------------------
+
+
+FICHE DE PAIE MENSUELLE INDIVIDUELLE 
+SELECT  id_agent, noms_agent, genre, grade, fonction, id_depense, date_depense, 
+motif, montant_depense, mois.id_mois, mois.description_mois, school_year.description_annee 
+FROM agent, depenses,  school_year, mois 
+WHERE (depenses.mois=mois.id_mois) AND (depenses.id_annee_scol=school_year.id_annee_scol) 
+AND mois.description_mois='Janvier' AND agent.id_agent='KAMU 1/ 2023';
+
+
+
+SELECT  DISTINCT school.num_secope,school.nom_ecole,school.reseau,school.pays,school.province,school.ville_territoire,school.commune_chefferi, payement_prime_agent.id_mois, noms_agent, genre, grade, fonction, id_prime, 
+montant_prime libelle,  mois.description_mois, school_year.description_annee 
+FROM agent, payement_prime_agent,school_year, mois,school
+WHERE (payement_prime_agent.id_agent=agent.id_agent) 
+AND (payement_prime_agent.id_mois=mois.id_mois) 
+AND (payement_prime_agent.id_annee_scol=school_year.id_annee_scol)
+
+FICHE DE PAIE INDIVIDUELLE
+SELECT payement_prime_agent.id_mois, noms_agent, genre, grade, fonction, id_prime, montant_prime, libelle,  
+mois.description_mois, school_year.description_annee FROM agent, payement_prime_agent,  
+school_year, mois WHERE (payement_prime_agent.id_agent=agent.id_agent) AND 
+(payement_prime_agent.id_mois=mois.id_mois) AND mois.description_mois='Janvier'  AND 
+(payement_prime_agent.id_annee_scol=school_year.id_annee_scol) 
+GROUP BY payement_prime_agent.id_agent='MAMU 1/ 2023';
+
+OK OK
+-----------------------------------------------------------------------------------------------
+SELECT payement_prime_agent.id_mois, noms_agent, genre, grade, fonction, id_prime, montant_prime, 
+libelle,  mois.description_mois, school_year.description_annee 
+FROM agent, payement_prime_agent,  school_year, mois 
+WHERE (payement_prime_agent.id_agent='KAAR 2 /2023') AND (payement_prime_agent.id_mois=mois.id_mois)  
+AND mois.description_mois='Janvier' AND 
+(payement_prime_agent.id_annee_scol=school_year.id_annee_scol) GROUP BY payement_prime_agent.id_mois;
+----------------------------------------------------------------------------------------------
+SELECT payement_prime_agent.id_mois, noms_agent, genre, grade, fonction, id_prime, montant_prime, 
+libelle,  mois.description_mois, school_year.description_annee 
+FROM agent, payement_prime_agent,  school_year, mois 
+WHERE (payement_prime_agent.id_agent='KAAR 2 /2023') AND (payement_prime_agent.id_mois=mois.id_mois)   
+AND (payement_prime_agent.id_annee_scol=school_year.id_annee_scol) 
+GROUP BY payement_prime_agent.id_mois;
+
+
+
+Liste des eleves par année et par option
+
+CREATE VIEW liste_des_eleves as (
+     SELECT DISTINCT school.num_secope,school.nom_ecole,school.reseau,school.pays,school.province,school.ville_territoire,school.commune_chefferi,students.num_mat, students.stdnames, students.genre, students.lieu_naissance, 
+students.date_naissance,students.adresse, inscrire.id_inscription, inscrire.date_inscription, 
+inscrire.code_class, inscrire.code_option,school_year.id_annee_scol,school_year.description_annee 
+FROM students, inscrire,school,school_year 
+WHERE students.num_mat=inscrire.student AND
+	school_year.id_annee_scol=inscrire.id_annee_scol)
+
+SELECT students.num_mat, students.stdnames, students.genre, students.lieu_naissance, 
+students.date_naissance, students.adresse, inscrire.id_inscription, inscrire.date_inscription, 
+inscrire.code_class, inscrire.code_option, inscrire.id_annee_scol FROM students, inscrire, 
+school_year WHERE students.num_mat=inscrire.student AND school_year.id_annee_scol=inscrire.id_annee_scol;
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+recette totale par categorie,par mois et par annee scolaire
+  
+SELECT DISTINCT  SUM(aff_frais.montant_affect) as Recettes,categorie_frais.id_categ_frais,categorie_frais.description_frais,school_year.id_annee_scol,school_year.description_annee,mois.id_mois,mois.description_mois FROM aff_frais,school_year,mois,categorie_frais
+WHERE school_year.id_annee_scol=aff_frais.id_anneeS AND
+		mois.id_mois=aff_frais.id_mois AND
+        aff_frais.id_catF=categorie_frais.id_categ_frais
+GROUP BY school_year.id_annee_scol,mois.id_mois,categorie_frais.id_categ_frais
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+depenses totale par categorie,par mois et par annee scolaire
+
+CREATE VIEW totdepense as (
+SELECT DISTINCT  SUM(aff_depenses.montant_affectD) as DepenseTotal,categorie_frais.id_categ_frais,categorie_frais.description_frais,school_year.id_annee_scol,school_year.description_annee,mois.id_mois,mois.description_mois FROM aff_depenses,school_year,mois,categorie_frais
+WHERE school_year.id_annee_scol=aff_depenses.id_anneeS AND
+		mois.id_mois=aff_depenses.id_mois AND
+        aff_depenses.id_catF=categorie_frais.id_categ_frais
+GROUP BY school_year.id_annee_scol,mois.id_mois,categorie_frais.id_categ_frais)
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Requette de solde globale
+
+CREATE VIEW	solde_globale AS(
+SELECT DISTINCT school.num_secope,school.reseau,school.pays,school.province,school.ville_territoire,school.commune_chefferi,
+categorie_frais.id_categ_frais,categorie_frais.description_frais,school_year.id_annee_scol,school_year.description_annee,mois.id_mois,mois.description_mois,
+totrecettes.Recettes,totdepense.DepenseTotal 
+FROM aff_depenses,school_year,mois,categorie_frais,totdepense,totrecettes,school
+WHERE categorie_frais.id_categ_frais=totrecettes.id_categ_frais AND
+	  categorie_frais.id_categ_frais=totrecettes.id_categ_frais AND
+      school_year.id_annee_scol=totdepense.id_annee_scol AND
+      school_year.id_annee_scol=totrecettes.id_annee_scol AND
+      mois.id_mois=totdepense.id_mois AND 
+      mois.id_mois=totrecettes.id_mois)
+
+
+

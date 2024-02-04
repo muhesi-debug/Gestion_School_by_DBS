@@ -1,0 +1,552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FC6F1A1B-61D0-4BA8-BFEE-DEC3D74134EC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>gestion_ecoles</RootNamespace>
+    <AssemblyName>gestion_ecoles</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Azure.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=8.3.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity, Version=6.6.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="mysqlbackup, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Projet school\mysqlbackup.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="controls\Cl_Gestion_salle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\Cl_Gestion_salle.Designer.cs">
+      <DependentUpon>Cl_Gestion_salle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controls\Gestion_agents.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\Gestion_agents.Designer.cs">
+      <DependentUpon>Gestion_agents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controls\Gestion_cotes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\Gestion_cotes.Designer.cs">
+      <DependentUpon>Gestion_cotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controls\Gestion_cours.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\Gestion_cours.Designer.cs">
+      <DependentUpon>Gestion_cours.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controls\Gestion_frais.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\Gestion_frais.Designer.cs">
+      <DependentUpon>Gestion_frais.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controls\Gestion_studient.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\Gestion_studient.Designer.cs">
+      <DependentUpon>Gestion_studient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controls\Gestion_users.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\Gestion_users.Designer.cs">
+      <DependentUpon>Gestion_users.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport3.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FrAffect_frais.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FrAffect_frais.Designer.cs">
+      <DependentUpon>FrAffect_frais.cs</DependentUpon>
+    </Compile>
+    <Compile Include="liste_paie_agent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>liste_paie_agent.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="models\Cl_Cumule.cs" />
+    <Compile Include="Resources\CrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formulaires\Affecter_cours.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\Affecter_cours.Designer.cs">
+      <DependentUpon>Affecter_cours.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\AjouteAgent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\AjouteAgent.Designer.cs">
+      <DependentUpon>AjouteAgent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FrmAjouterAnnee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FrmAjouterAnnee.Designer.cs">
+      <DependentUpon>FrmAjouterAnnee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FrmAjouterMois.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FrmAjouterMois.Designer.cs">
+      <DependentUpon>FrmAjouterMois.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\frmCateFrais.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\frmCateFrais.Designer.cs">
+      <DependentUpon>frmCateFrais.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FrmCategorieCotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FrmCategorieCotes.Designer.cs">
+      <DependentUpon>FrmCategorieCotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FrmPeriode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FrmPeriode.Designer.cs">
+      <DependentUpon>FrmPeriode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\Frm_ajouterUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\Frm_ajouterUsers.Designer.cs">
+      <DependentUpon>Frm_ajouterUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\Frm_Paiement_agent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\Frm_Paiement_agent.Designer.cs">
+      <DependentUpon>Frm_Paiement_agent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\Frm_paiement_frais_scolaire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\Frm_paiement_frais_scolaire.Designer.cs">
+      <DependentUpon>Frm_paiement_frais_scolaire.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\Frm_School.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\Frm_School.Designer.cs">
+      <DependentUpon>Frm_School.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\Frm_semestre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\Frm_semestre.Designer.cs">
+      <DependentUpon>Frm_semestre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\Frm_Sortie_depenses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\Frm_Sortie_depenses.Designer.cs">
+      <DependentUpon>Frm_Sortie_depenses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\Fr_fixation_frais.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\Fr_fixation_frais.Designer.cs">
+      <DependentUpon>Fr_fixation_frais.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\Fr_inscrire_Student.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\Fr_inscrire_Student.Designer.cs">
+      <DependentUpon>Fr_inscrire_Student.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListeEleveclasseannée.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListeEleveclasseannée.Designer.cs">
+      <DependentUpon>ListeEleveclasseannée.cs</DependentUpon>
+    </Compile>
+    <Compile Include="models\Cl_agents.cs" />
+    <Compile Include="models\Cl_annee.cs" />
+    <Compile Include="models\Cl_calsse_et_option.cs" />
+    <Compile Include="models\Cl_cotes.cs" />
+    <Compile Include="models\Cl_cours.cs" />
+    <Compile Include="models\Cl_etudiant.cs" />
+    <Compile Include="models\Cl_frais.cs" />
+    <Compile Include="models\Cl_mois.cs" />
+    <Compile Include="models\Cl_periode.cs" />
+    <Compile Include="models\Cl_School.cs" />
+    <Compile Include="models\Cl_semestre.cs" />
+    <Compile Include="models\Cl_users.cs" />
+    <Compile Include="models\connection.cs" />
+    <Compile Include="models\MsgFRM.cs" />
+    <Compile Include="Resources\CrystalReport11.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rlivre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rlivre.Designer.cs">
+      <DependentUpon>Rlivre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Services\MsgFRM.cs" />
+    <Compile Include="view\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="view\Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Form3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Form3.Designer.cs">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="controls\Cl_Gestion_salle.resx">
+      <DependentUpon>Cl_Gestion_salle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controls\Gestion_agents.resx">
+      <DependentUpon>Gestion_agents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controls\Gestion_cotes.resx">
+      <DependentUpon>Gestion_cotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controls\Gestion_cours.resx">
+      <DependentUpon>Gestion_cours.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controls\Gestion_frais.resx">
+      <DependentUpon>Gestion_frais.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controls\Gestion_studient.resx">
+      <DependentUpon>Gestion_studient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controls\Gestion_users.resx">
+      <DependentUpon>Gestion_users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport2.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport3.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulaires\FrAffect_frais.resx">
+      <DependentUpon>FrAffect_frais.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="liste_paie_agent.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>liste_paie_agent.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport11.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulaires\Affecter_cours.resx">
+      <DependentUpon>Affecter_cours.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulaires\AjouteAgent.resx">
+      <DependentUpon>AjouteAgent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulaires\FrmAjouterAnnee.resx">
+      <DependentUpon>FrmAjouterAnnee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulaires\FrmAjouterMois.resx">
+      <DependentUpon>FrmAjouterMois.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulaires\frmCateFrais.resx">
+      <DependentUpon>frmCateFrais.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulaires\FrmCategorieCotes.resx">
+      <DependentUpon>FrmCategorieCotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulaires\FrmPeriode.resx">
+      <DependentUpon>FrmPeriode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulaires\Frm_ajouterUsers.resx">
+      <DependentUpon>Frm_ajouterUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulaires\Frm_Paiement_agent.resx">
+      <DependentUpon>Frm_Paiement_agent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulaires\Frm_paiement_frais_scolaire.resx">
+      <DependentUpon>Frm_paiement_frais_scolaire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulaires\Frm_School.resx">
+      <DependentUpon>Frm_School.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulaires\Frm_semestre.resx">
+      <DependentUpon>Frm_semestre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulaires\Frm_Sortie_depenses.resx">
+      <DependentUpon>Frm_Sortie_depenses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulaires\Fr_fixation_frais.resx">
+      <DependentUpon>Fr_fixation_frais.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulaires\Fr_inscrire_Student.resx">
+      <DependentUpon>Fr_inscrire_Student.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulaires\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListeEleveclasseannée.resx">
+      <DependentUpon>ListeEleveclasseannée.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\Rp_Depenses_par_mois.rdlc" />
+    <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="Rlivre.resx">
+      <DependentUpon>Rlivre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="view\Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Form3.resx">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_menu_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WhatsApp Image 2023-10-31 à 04.59.19_7614e00b.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PXL_20230305_105305982 %282%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IMG_20230802_110849_789.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Uac.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_student_male_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_courses_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_money_bag_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_school_director_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_classroom_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_user_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_settings_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_test_passed_48px_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_school_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Roman.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IMG_20230212_141237_083.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Screenshot_20231119-161425.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\password_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\keepass_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Screenshot_20231119-162836.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Screenshot_20231119-163847.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_sign_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_sign_48px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_sign_48px2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\visible_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\invisible_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Screenshot_20231119-173312.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,39 @@
+requettes des depenses 
+
+select school.num_secope,school.reseau,school.pays,school.province,school.ville_territoire,school.commune_chefferi,
+categorie_frais.id_categ_frais,categorie_frais.description_frais,school_year.id_annee_scol,school_year.description_annee,
+mois.id_mois,mois.description_mois,aff_depenses.id_AffD,aff_depenses.Date_AffD,aff_depenses.montant_affectD,semestre.id_semestre,
+semestre.description_sem,depenses.id_depense,depenses.motif 
+FROM school,school_year,categorie_frais,mois,aff_depenses,depenses,semestre
+WHERE categorie_frais.id_categ_frais=aff_depenses.id_catF AND
+		school_year.id_annee_scol=aff_depenses.id_anneeS AND
+        mois.id_mois=aff_depenses.id_mois AND
+        semestre.id_semestre=aff_depenses.id_semestre AND
+        depenses.id_depense=aff_depenses.id_depense
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+requette recettes
+
+create view caisse_recette as(
+select school.num_secope,school.reseau,school.pays,school.province,school.ville_territoire,school.commune_chefferi,
+categorie_frais.id_categ_frais,categorie_frais.description_frais,school_year.id_annee_scol,school_year.description_annee,
+mois.id_mois,mois.description_mois,semestre.id_semestre,semestre.description_sem,aff_frais.id_Aff,aff_frais.montant_affect,
+payement_frais.id_payement_frais,payement_frais.libelle FROM school,school_year,categorie_frais,mois,aff_frais,payement_frais,semestre
+WHERE categorie_frais.id_categ_frais=aff_frais.id_catF AND
+		school_year.id_annee_scol=aff_frais.id_anneeS AND
+        mois.id_mois=aff_frais.id_mois AND
+        semestre.id_semestre=aff_frais.id_semestre AND
+        payement_frais.id_payement_frais=aff_frais.id_payement_frais)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+requette fiche_paie_student
+ 
+create view fiche_paie_student as (
+select school.num_secope,school.nom_ecole,school.pays,school.province,school.reseau,school.ville_territoire,school.commune_chefferi,students.num_mat,
+students.stdnames,students.genre,students.lieu_naissance,students.date_naissance,students.photo_eleve,students.adresse,inscrire.id_inscription,
+school_year.id_annee_scol,school_year.description_annee,classes.code_class,classes.description_class,options.code_option,options.description_option,
+payement_frais.id_payement_frais,payement_frais.date_paie,payement_frais.libelle,payement_frais.montant_paye FROM school,students,inscrire,school_year,payement_frais,classes,options
+WHERE school.num_secope=inscrire.num_secope AND
+		classes.code_class=inscrire.code_class AND
+        options.code_option=inscrire.code_option AND
+        students.num_mat=inscrire.student AND
+       inscrire.id_inscription=payement_frais.id_payement_frais)
